@@ -1,9 +1,27 @@
 package tverdoy;
 
-import java.util.Set;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class RomanConvertor {
-    private static final Set<String> romansNumbers = Set.of("I", "V", "X", "L", "C", "D", "M");
+    private final static TreeMap<Integer, String> romans = new TreeMap<>();
+    static {
+
+        romans.put(1000, "M");
+        romans.put(900, "CM");
+        romans.put(500, "D");
+        romans.put(400, "CD");
+        romans.put(100, "C");
+        romans.put(90, "XC");
+        romans.put(50, "L");
+        romans.put(40, "XL");
+        romans.put(10, "X");
+        romans.put(9, "IX");
+        romans.put(5, "V");
+        romans.put(4, "IV");
+        romans.put(1, "I");
+
+    }
 
     protected static boolean isRoman(String input) {
         if (input.isEmpty()) {
@@ -11,7 +29,7 @@ public class RomanConvertor {
         }
 
         for (char symbol : input.toCharArray()) {
-            if (!romansNumbers.contains(String.valueOf(symbol))) {
+            if (!romans.containsValue(String.valueOf(symbol))) {
                 return false;
             }
         }
@@ -30,37 +48,22 @@ public class RomanConvertor {
         int result = 0;
 
         for (char symbol : formatRoman.toCharArray()) {
-            result += romanCharToArabic(symbol);
+            for( Map.Entry<Integer, String> entry : romans.entrySet() ){
+                if(entry.getValue().equals(String.valueOf(symbol))){
+                    result += entry.getKey();
+                }
+            }
         }
 
         return result;
     }
 
-    private static int romanCharToArabic(char symbol) {
-        switch (symbol) {
-            case 'I' -> {
-                return 1;
-            }
-            case 'V' -> {
-                return 5;
-            }
-            case 'X' -> {
-                return 10;
-            }
-            case 'L' -> {
-                return 50;
-            }
-            case 'C' -> {
-                return 100;
-            }
-            case 'D' -> {
-                return 500;
-            }
-            case 'M' -> {
-                return 1000;
-            }
+    protected static String toRoman(int number) {
+        int l =  romans.floorKey(number);
+        if ( number == l ) {
+            return romans.get(number);
         }
 
-        throw new Error("Unknow roman symbol");
+        return romans.get(l) + toRoman(number-l);
     }
 }
