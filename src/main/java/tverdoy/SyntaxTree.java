@@ -20,7 +20,7 @@ public class SyntaxTree {
     /**
      * @param input target string that parse
      * @return syntax tree
-     * @throws Exception if invalid syntax
+     * @throws Exception if invalid syntax or arguments in different systems
      */
     protected static SyntaxTree parse(String input) throws Exception {
         String inputWithoutSpace = input.replace(" ", "");

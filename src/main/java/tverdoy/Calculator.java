@@ -7,7 +7,11 @@ public class Calculator {
         this.syntaxTree = syntaxTree;
     }
 
-    protected String calculateToString() {
+    /**
+     * @return result of calculate
+     * @throws Exception if negative result and output in Roman
+     */
+    protected String calculateToString() throws Exception {
         int result;
 
         switch (syntaxTree.getOperator()) {
@@ -21,6 +25,13 @@ public class Calculator {
         if (syntaxTree.isArgumentsIsArabic()) {
             return String.valueOf(result);
         } else {
+            if (result == 0) {
+                return "";
+            }
+
+            if (result < 0) {
+                throw new Exception("It is not possible to have a negative result in Roman");
+            }
             return RomanConvertor.toRoman(result);
         }
     }

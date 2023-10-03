@@ -17,4 +17,16 @@ public class CalculatorTest extends TestCase {
 
         assertEquals(calculator.calculateToString(), "XXVIII");
     }
+
+    public void testCalculateToStringRomanLessZero() throws Exception {
+        SyntaxTree syntaxTree = SyntaxTree.parse("IV - VII");
+        Calculator calculator = new Calculator(syntaxTree);
+
+        try {
+            calculator.calculateToString();
+            fail();
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), "It is not possible to have a negative result in Roman");
+        }
+    }
 }
