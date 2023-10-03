@@ -15,6 +15,11 @@ public class RomanConvertorTest extends TestCase {
         assertFalse(RomanConvertor.isRoman("5"));
         assertFalse(RomanConvertor.isRoman("II2"));
         assertFalse(RomanConvertor.isRoman("V4I"));
+    }
 
+    public void testToArabic() {
+        assertEquals(RomanConvertor.toArabic("III"), 3);
+        assertEquals(RomanConvertor.toArabic("IV"), 4);
+        assertEquals(RomanConvertor.toArabic("XIX"), 19);
     }
 }
