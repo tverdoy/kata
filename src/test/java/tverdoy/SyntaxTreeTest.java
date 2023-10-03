@@ -19,4 +19,12 @@ public class SyntaxTreeTest extends TestCase {
         assertEquals(syntaxTree.getSecondArgument(), 3);
         assertEquals(syntaxTree.getOperator(), "-");
     }
+
+//    public void testMultiplyParseRomans() throws Exception {
+//        SyntaxTree syntaxTree = SyntaxTree.parse("IV * II");
+//
+//        assertEquals(syntaxTree.getFirstArgument(), 4);
+//        assertEquals(syntaxTree.getSecondArgument(), 2);
+//        assertEquals(syntaxTree.getOperator(), "*");
+//    }
 }
